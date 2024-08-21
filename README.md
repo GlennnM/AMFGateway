@@ -10,13 +10,13 @@ then run 'amf.bat' or 'amf.sh' depending on your system. JDK 21 and maven are re
 The server will start on port 8080 and you can access the gateway at /gateway.
 
 
-##TODO
+## TODO
 
 - account creation with database/object store?
 - mod integration for archive to allow login
 - implement the actual commands(src/webapp/AMF.jsp) with SQL statements or whatever else idk
-- bmc server??
 - save transfer/download support?(ideally allow player to switch between NK, hydar, and local saves)
 - (see save.zip for something slightly close to above but also unfinished)
+- bmc server??
 - fortress destroyer and TK(api.ninjakiwi.com recreation + more archive modding needed)
 - wheel of fate, profiles, leaderboards, battles stats, ...
