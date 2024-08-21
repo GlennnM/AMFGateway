@@ -9,6 +9,8 @@ then run 'amf.bat' or 'amf.sh' depending on your system. JDK 21 and maven are re
 
 The server will start on port 8080 and you can access the gateway at /gateway.
 
+Sending a GET request will show some AMF parsing on test data; a POST request will respond through different methods in the gateway which currently consist of stubbed code.
+
 
 ## TODO
 
