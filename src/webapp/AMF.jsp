@@ -25,7 +25,7 @@ for a list of their commands and return types see 'future_stuff.txt'
 		public Object apply(List<?> args) throws SQLException{
 			String uid=(String)args.get(0);
 			String game=(String)args.get(1);
-			return new JSONObject().put("hydar",2);
+			return Map.of("hydar",true,"hydar2",3.0);
 		}
 	}
 	//these represent types, we use descriptive names for strings
@@ -63,10 +63,9 @@ for a list of their commands and return types see 'future_stuff.txt'
 	/**V2 AMF STUFF(mostly the same)*/
 	new AMFService("v2.game.get_data"){
 		@Override
-		public Object apply(List<?> args) throws SQLException{
-			String uid=(String)args.get(0);
-			String game=(String)args.get(1);
-			return new JSONObject().put("hydar",2);
+		public Object apply(List<?> args) throws Exception{
+			//reuse v1(todo: simplify for all the v2s with same input/output)
+			return AMFService.getService("game.get_data").apply(args);
 		}
 	}
 	.inputs("userID","gameName")

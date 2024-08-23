@@ -203,6 +203,10 @@
 			}
 		}
 
+		public void writeBoolean(Boolean b) throws IOException {
+			this.outputStream.writeByte(1);
+			this.outputStream.writeBoolean(b);
+		}
 		@Override
 		public void writeData(Object obj) throws IOException {
 			if (obj instanceof Map<?, ?> j)
@@ -211,6 +215,8 @@
 				writeJSONArray(j);
 			else if (obj instanceof JSONObject k)
 				writeJSONObject(k);
+			else if (obj instanceof Boolean b)
+				writeBoolean(b);
 			else
 				super.writeData(obj);
 		}
@@ -343,7 +349,7 @@
 
 		public static AMFBody accept(AMFBody input) {
 			String name = input.getTarget();
-			AMFService svc = services.get(name);
+			AMFService svc = getService(name);
 			String response = input.getResponse();
 			List<?> list;
 			if (!(input.getValue() instanceof List<?>)) {
@@ -362,7 +368,11 @@
 			//System.out.println(input.getValue());
 			return new AMFBody(response + "/onResult", "null", null, AMFType.NULL.code);
 		}
-
+		
+		public static AMFService getService(String target){
+			return services.get(target);
+		}
+		
 		protected boolean validate(int index, Object item) {
 			return true;
 		}
