@@ -37,9 +37,9 @@ game.get_store
 	[Obj{salethumb:STR thumbnail:STR cost:NUM quantity:NUM hidden:NUM itemname:STR iscombo:NUM salecost:NUM description:STR id:NUM maxbuyable:NUM maxquantity:NUM}...]
 game.get_my_achievements
 	REQUEST:
-	[game,uID,token]
+	[uID,token, game]
 	RESPONSE:
-	NULL
+	[Obj{perc:NUM hidden:NUM thumb:STR ach_name:STR desc:STR id:NUM uid:NUM cred:NUM pts:NUM}]
 game.save_data
 	REQUEST:
 	[uid, token, game, {important:bool gcash:num data:str transid:num glevel:num gxp:num gnum:num}]
@@ -100,11 +100,6 @@ user.get_inventory
 	[game,uID,token,username]
 	RESPONSE:
 	[Obj{thumbnail:STR cost:NUM quantity:NUM hidden:NUM itemname:STR iscombo:NUM salecost:NUM description:STR id:NUM maxbuyable:NUM maxquantity:NUM}...]
-user.get_my_achievements -> might not exist
-	REQUEST:
-	[uID,token,game]
-	RESPONSE:
-	[Obj{perc:NUM hidden:NUM thumb:STR ach_name:STR desc:STR id:NUM uid:NUM cred:NUM pts:NUM}]
 user.set_achievement
 	REQUEST:
 	[uID,token,game,ach_id:num,perc:num,username]
