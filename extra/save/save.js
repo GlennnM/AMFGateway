@@ -104,32 +104,37 @@ fs.mkdirSync(dir);
 			nkApiId:-1,
 			sessionID:-1
 		};
-		const ret=JSON.parse(await $post(root+"handshake",params));
-		console.log(ret);
-		params.nkApiId=ret.nkApiId;
-		params.sessionID=ret.sessionID;
-		params.sid=ret.sid;
-		const core=await $post(root+"core",params);
-		writeFile(dir+"bmc_core.json",core);
+		try{
+			const ret=JSON.parse(await $post(root+"handshake",params));
+			console.log(ret);
+			params.nkApiId=ret.nkApiId;
+			params.sessionID=ret.sessionID;
+			params.sid=ret.sid;
+			const core=await $post(root+"core",params);
+			writeFile(dir+"bmc_core.json",core);
 
-		for(const i of [0,1]){
-			console.log("Saving city "+i+"...");
-			const city0=await $post(root+"cities/"+i,params);
-			if(city0)
-				writeFile(dir+"bmc_city"+i+".json",city0);
-			
-			const pvp0=await $post(root+"pvp/"+i+"/core",params);
-			if(pvp0)
-				writeFile(dir+"bmc_pvp"+i+".json",pvp0);
-			
-			const ct0=await $post(root+"contest/"+i+"/history",params);
-			if(ct0)
-				writeFile(dir+"bmc_ct"+i+".json",ct0);
-			
-			const pvpf0=await $post(root+"pvp/"+i+"/friends",params);
-			if(pvpf0)
-				writeFile(dir+"bmc_pvpf"+i+".json",pvpf0);
+			for(const i of [0,1]){
+				console.log("Saving city "+i+"...");
+				const city0=await $post(root+"cities/"+i,params);
+				if(city0)
+					writeFile(dir+"bmc_city"+i+".json",city0);
+				
+				const pvp0=await $post(root+"pvp/"+i+"/core",params);
+				if(pvp0)
+					writeFile(dir+"bmc_pvp"+i+".json",pvp0);
+				
+				const ct0=await $post(root+"contest/"+i+"/history",params);
+				if(ct0)
+					writeFile(dir+"bmc_ct"+i+".json",ct0);
+				
+				const pvpf0=await $post(root+"pvp/"+i+"/friends",params);
+				if(pvpf0)
+					writeFile(dir+"bmc_pvpf"+i+".json",pvpf0);
+			}
+		}catch(e){
+			console.log("Skipping BMC");
 		}
+		
 	}
 	console.log("Finished! Compressing...");
 	const archive = archiver('zip', { zlib: { level: 0 }});
