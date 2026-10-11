@@ -1,4 +1,6 @@
 # AMFGateway
+## Archived, as all functionality planned here has been implemented in [FlashPrivateServer](https://github.com/GlennnM/FlashPrivateServer/) since version 5.0!!!
+
 Re-creation of AMF save system gateway for Ninja Kiwi games. WIP.
 
 To download (**DO NOT use the 'download zip' feature in github browser; it doesn't include submodules**):
